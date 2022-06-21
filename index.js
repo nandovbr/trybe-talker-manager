@@ -4,8 +4,6 @@ const talkerManagerRoute = require('./routes/talkerManager');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 const HTTP_OK_STATUS = 200;
 const PORT = '3000';

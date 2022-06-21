@@ -4,6 +4,11 @@ const fs = require('fs').promises;
 const talkerDataBase = './talker.json';
 // console.log(talkerDataBase)
 
+router.get('/talker', async (_req, res) => {
+  const talkerManager = await fs.readFile(talkerDataBase, 'utf-8');
+  res.status(200).json(JSON.parse(talkerManager));
+});
+
 router.get('/talker/:id', async (req, res) => {
   const { id } = req.params;
   const talker = await fs.readFile(talkerDataBase, 'utf-8');
