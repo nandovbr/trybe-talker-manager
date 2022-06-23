@@ -4,7 +4,7 @@ function generateToken() {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let token = '';
   const charactersLength = characters.length;
-  for (let index = 0; index <= 15; index + 1) {
+  for (let index = 0; index <= 15; index += 1) {
     token += characters.charAt(Math.random() * charactersLength);
   }
 

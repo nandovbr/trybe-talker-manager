@@ -1,5 +1,6 @@
 const router = require('express').Router();
-// const validToken = require('../middlewares/token');
+const validEmail = require('../middlewares/email'); 
+const validPassword = require('../middlewares/password');
 
 router.post('/login', (_req, res) => {
   res.status(200).json({ token: '7mqaVRXJSp886CGr' });
