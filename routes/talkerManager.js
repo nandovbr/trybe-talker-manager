@@ -21,4 +21,6 @@ router.get('/talker/:id', async (req, res) => { // cria rota talker/:id
   return res.status(200).json(talkerSearch);
 });
 
+// router.post('/talker', async (req, res) => {});
+
 module.exports = router;

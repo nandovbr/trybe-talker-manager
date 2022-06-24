@@ -1,4 +1,4 @@
-// Gerador aleatório baseado no link:
+// Gerador aleatório de toknes baseado no link:
 // https://www.delftstack.com/pt/howto/javascript/javascript-random-string/
 function generateToken() {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
