@@ -14,4 +14,3 @@ const validEmail = (req, res, next) => {
   };
   
   module.exports = validEmail;
-  
