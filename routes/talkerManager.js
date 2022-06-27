@@ -1,8 +1,24 @@
 const router = require('express').Router();
 const fs = require('fs').promises;
 
+const validName = require('../middlewares/name');
+const validNewTalker = require('../middlewares/newTalker');
+const validAge = require('../middlewares/age');
+const validRate = require('../middlewares/rate');
+const validWatchedAt = require('../middlewares/watchedAt');
+const validToken = require('../middlewares/token');
+
 const talkerDataBase = './talker.json';
 // console.log(talkerDataBase)
+
+const validateNewTalkerManager = [
+  validToken,
+  validNewTalker,
+  validName,
+  validAge,
+  validWatchedAt,
+  validRate,
+];
 
 router.get('/talker', async (_req, res) => {
   const talkerManager = await fs.readFile(talkerDataBase, 'utf-8');
@@ -23,7 +39,7 @@ router.get('/talker/:id', async (req, res) => { // cria rota talker/:id
 
 // rota para criar novo talker com a estrutura do objeto newTalkerManager
 // adicionando o id automaticamente baseado no tamanho do array + 1
-router.post('/talker', async (req, res) => {
+router.post('/talker', validateNewTalkerManager, async (req, res) => {
   const { name, age, talk } = req.body;
   const { rate, watchedAt } = talk;
   const talker = await fs.readFile(talkerDataBase, 'utf-8');
