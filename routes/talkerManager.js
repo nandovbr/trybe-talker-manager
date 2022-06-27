@@ -21,6 +21,27 @@ router.get('/talker/:id', async (req, res) => { // cria rota talker/:id
   return res.status(200).json(talkerSearch);
 });
 
-// router.post('/talker', async (req, res) => {});
+// rota para criar novo talker com a estrutura do objeto newTalkerManager
+// adicionando o id automaticamente baseado no tamanho do array + 1
+router.post('/talker', async (req, res) => {
+  const { name, age, talk } = req.body;
+  const { rate, watchedAt } = talk;
+  const talker = await fs.readFile(talkerDataBase, 'utf-8');
+  const talkerParse = JSON.parse(talker);
+  const id = talkerParse.length + 1;
+
+  const newTalkerManager = {
+    id,
+    name,
+    age,
+    talk: {
+      watchedAt,
+      rate,
+    },
+  };
+talkerParse.push(newTalkerManager);
+await fs.writeFile(talkerDataBase, JSON.stringify(talkerParse));
+return res.status(201).json(newTalkerManager);
+});
 
 module.exports = router;
