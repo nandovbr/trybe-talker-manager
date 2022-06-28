@@ -7,17 +7,23 @@ const validAge = require('../middlewares/age');
 const validRate = require('../middlewares/rate');
 const validWatchedAt = require('../middlewares/watchedAt');
 const validToken = require('../middlewares/token');
+// const validLogin = require('./login');
+const validEmail = require('../middlewares/email');
+const validPassword = require('../middlewares/password');
+// const validGenerateToken = require('../middlewares/generateToken');
 
 const talkerDataBase = './talker.json';
 // console.log(talkerDataBase)
 
 const validateNewTalkerManager = [
-  validToken,
   validNewTalker,
   validName,
   validAge,
   validWatchedAt,
   validRate,
+  validToken,
+  validEmail,
+  validPassword,
 ];
 
 router.get('/talker', async (_req, res) => {
@@ -45,11 +51,11 @@ router.post('/talker', validateNewTalkerManager, async (req, res) => {
   const talker = await fs.readFile(talkerDataBase, 'utf-8');
   const talkerParse = JSON.parse(talker);
   const id = talkerParse.length + 1;
-
+  
   const newTalkerManager = {
-    id,
     name,
     age,
+    id,
     talk: {
       watchedAt,
       rate,
