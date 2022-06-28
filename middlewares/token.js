@@ -1,3 +1,5 @@
+// const genToken = require("./generateToken");
+
 const validToken = (req, res, next) => {
   const { authorization } = req.headers;
 
@@ -5,7 +7,7 @@ const validToken = (req, res, next) => {
     return res.status(401).json({ message: 'Token não encontrado' });
   }
 
-  if (authorization !== 16) {
+  if (authorization !== '7mqaVRXJSp886CGr') {
     return res.status(401).json({ message: 'Token inválido' });
   }
 

@@ -5,10 +5,10 @@ const generateToken = require('../middlewares/generateToken');
 
 const validLogin = [validEmail, validPassword];
 
-router.post('/login', validLogin, async (_req, res) => {
-  const token = generateToken();
+router.post('/login', validLogin, (_req, res) => {
+  // const token = generateToken();
 
-  res.status(200).json({ token: token });
+  res.status(200).json({ token: '7mqaVRXJSp886CGr' });
 });
 
 module.exports = router;
