@@ -23,6 +23,15 @@ const validateNewTalkerManager = [
   validRate,
 ];
 
+const validateEditTalker = [
+  validToken,
+  validName,
+  validAge,
+  validNewTalker,
+  validWatchedAt,
+  validRate,
+];
+
 router.get('/talker', async (_req, res) => {
   const talkerManager = await fs.readFile(talkerDataBase, 'utf-8');
   res.status(200).json(JSON.parse(talkerManager));
@@ -61,6 +70,25 @@ router.post('/talker', validateNewTalkerManager, async (req, res) => {
 talkerParse.push(newTalkerManager);
 await fs.writeFile(talkerDataBase, JSON.stringify(talkerParse));
 return res.status(201).json(newTalkerManager);
+});
+
+router.put('/talker/:id', validateEditTalker, async (req, res) => {
+  const { id } = req.params;
+  const { name, age, talk } = req.body;
+  const newTalker = {
+    id: Number(id),
+    name,
+    age,
+    talk,
+  };
+  const talkers = await fs.readFile(talkerDataBase, 'utf8');
+  const talkerParse = JSON.parse(talkers);
+  const index = talkerParse.findIndex((item) => item.id === Number(id));
+
+  talkerParse[index] = newTalker;
+  await fs.writeFile(talkerDataBase, JSON.stringify(talkerParse));
+
+  return res.status(200).json(newTalker);
 });
 
 module.exports = router;
