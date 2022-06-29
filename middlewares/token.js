@@ -1,13 +1,13 @@
-// const genToken = require("./generateToken");
+// const generateToken = require('./generateToken');
 
 const validToken = (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (!authorization) {
+  if (!authorization || authorization === undefined) {
     return res.status(401).json({ message: 'Token não encontrado' });
   }
 
-  if (authorization !== '7mqaVRXJSp886CGr') {
+  if (authorization.length !== 16) {
     return res.status(401).json({ message: 'Token inválido' });
   }
 

@@ -5,7 +5,7 @@ const validNewTalker = (req, res, next) => {
   //   return res.status(400).json({ message: 'O campo "talk" é obrigatório' });
   // }
 
-  if (!talk) {
+  if (!talk || talk === undefined) {
     return res.status(400).json({ message: 'O campo "talk" é obrigatório' });
   }
   

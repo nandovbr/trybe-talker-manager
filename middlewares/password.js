@@ -1,7 +1,7 @@
 const validPassword = (req, res, next) => {
   const { password } = req.body;
 
-  if (!password) {
+  if (!password || password === undefined) {
     return res.status(400).json({ message: 'O campo "password" é obrigatório' });
   }
 

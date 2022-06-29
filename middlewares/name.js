@@ -1,7 +1,7 @@
 const validName = (req, res, next) => {
   const { name } = req.body;
 
-  if (!name) {
+  if (!name || name === undefined) {
     return res.status(400).json({ message: 'O campo "name" é obrigatório' });
   }
 
